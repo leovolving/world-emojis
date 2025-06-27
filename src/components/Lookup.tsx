@@ -1,22 +1,23 @@
 "use client";
 
-import { ChangeEvent, FormEventHandler, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 import { countries } from "../data/countries";
+import { C } from "../types/country";
 
 import Country from "./Country";
 
 export default function Lookup() {
   const [inputValue, setInputValue] = useState("");
-  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState<C | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onChange = (e: ChangeEvent) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     setErrorMessage("");
   };
 
-  const onSubmit = (e: FormEventHandler) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (inputValue.length === 2) {
